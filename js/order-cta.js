@@ -17,3 +17,17 @@ function closeOrderModal() {
 }
 
 orderModalOverlay.addEventListener('click', closeOrderModal)
+
+function toggleOrderCtaBookmark() {
+  const [icon, countSpan] = this.children
+  const count = Number(countSpan.innerText.replaceAll(',', ''))
+  let newCount = count
+  this.classList.toggle('is-active')
+  this.classList.contains('is-active') ? (newCount += 1) : (newCount -= 1)
+  countSpan.innerText = newCount.toLocaleString()
+  countSpan.setAttribute('aria-label', `북마크 ${newCount.toLocaleString()}회`)
+  icon.classList.toggle('ic-bookmark')
+  icon.classList.toggle('ic-bookmark-filled')
+}
+
+orderCtaBookmarkButton.addEventListener('click', toggleOrderCtaBookmark)
